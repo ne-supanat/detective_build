@@ -1,0 +1,16 @@
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - uses: erickzanardo/flutter-gh-pages@v7
+        with:
+          customArgs: --dart-define API_KEY=${{ secrets.API_KEY }}
+          basehref: /detective_build/
